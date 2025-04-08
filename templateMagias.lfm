@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form name="templateMagias" height="270" width="455.5" margins="{top=3, bottom=3, right=3, left=3}">  
+<style>
+comboBox{
+	fontFamily: Cambria;
+	transparent: true;
+	fontColor: #cdcdcd;
+}
+edit{
+	fontFamily: Cambria;
+	transparent: false;
+	fontColor: white;
+}
+label, button{
+	fontFamily: Cambria;
+	fontColor: white;
+	fontStyle: bold;
+}
+</style>
+	
+    <rectangle align="client" xradius="5" yradius="5" cornerType="round" color="#202020">
+		
+
+		<image 	left="0"  top="0"   width="455" height="270" field="imagemestilo" editable="true" style="autoFit" animate="true"/>
+		<dataLink field="imagemestilo" defaultValue="http://blob.firecast.com.br/blobs/EVNGWURA_3118040/em-formacao_318-617309__1_.png"/>
+		<edit horzTextAlign="center" width="50" height="50" left="5" top="5" field="Nvmagia" type="number" min="0" max="99" fontColor="#FFFF00" fontSize="30"/>
+		<layout height="30" top="5" left="166" width="282.5">
+					
+			<button text="🞭" width='30' onClick="NDB.deleteNode(sheet);" align="right" margins="{left=2}"/>
+			<edit field="nomeMagia" fontStyle="bold" width="250" left="5" />
+
+		</layout>
+
+		<button text="Descrição" top="235" left="10" width="430.5" height="30" name="labDesc">
+			<event name="onClick">
+			local pop = self:findControlByName("popMagia");
+			if pop ~= nil then
+			pop:setNodeObject(self.sheet);
+			pop:showPopupEx("center");
+			else
+			showMessage("Ops, bug... Nao encontrei o popup para exibir");
+			end;
+			</event>
+		</button>
+
+		<popup name="popMagia" width="930" height="530" backOpacity="0" drawContainer="false">
+			<rectangle align="client" color="#4B0082" xradius= "10" yradius="10">
+				<image field="imagemMagia" align="client" style="autofit" margins="{right=20, left=20}" opacity="0.1"/>
+
+				<dataLink defaultValue="Descrição." field="descriMagia" />
+				<richEdit left="11" top="11" width="900" height="500" field="SkilsNOTAS" backgroundColor="#696969" defaultFontColor="white"/>
+			</rectangle>
+		</popup>
+	</rectangle>
+</form>
